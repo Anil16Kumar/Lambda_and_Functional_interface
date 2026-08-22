@@ -1,0 +1,25 @@
+
+
+Functional Interface:
+Interface having exaclty one abstract method but it can have any number of default and static methods, we can invoke lambda
+expression by using functional interface
+
+abstract method: jiski body nahi hoti
+
+public interface Parent{
+    public void sayHello(); // abstract method
+}
+
+public interface Child extends Parent{ // ye bhi functional interface hoga
+}
+
+------
+lakin agar:-
+public interface Child extends Parent{ // abb ye functional interface NAHI hoga, kyuki child ke andar ab 2 abstract method h.
+    public void sayBye();
+}
+
+
+
+
+

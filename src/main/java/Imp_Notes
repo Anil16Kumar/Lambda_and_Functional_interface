@@ -1,0 +1,77 @@
+
+java 8:
+> concise and minimal code.
+> missing the functional programming benefits in oops nature, to utilize functional programming benefits in java, java 8 came,
+but still it is oops language.
+> enable parallel programming, multi core processors.
+
+java 8 feature:
+> lambda expression (X,Y)->{X+Y}
+> stream API
+> Date and time API
+> Base64 Encode Decode
+> Method reference and constructor reference (:: operator)
+> Default and static methods in interface
+> Functional interface (SAM: single abstract method)
+> optional class/ java IO improvement/ Collection API improvement
+
+-----
+
+steps to make any function lambda expression:
+1. remove modifier
+2. remove return type
+3. remove method name
+4. place arrow
+
+private void sayHello(){
+    System.out.println("Hello everyone..");
+}
+
+function to lambda expression
+
+()->{System.out.println("Hello everyone..");}
+
+           =====X=====
+
+private void add(int a, int b){
+    System.out.println(a+b);
+}
+
+(int a, int b)->{System.out.println(a+b);}
+
+            =====X=====
+
+private int getStringLength(String str){
+    return str.length();
+}
+
+(String str)->{return str.length();}
+
+>> if body has one statement we can remove curly brackets
+e.g. : (String str) -> return str.length();   -or-   (int a, int b) -> System.out.println(a+b);
+
+>> use type inference, compiler guess the situation or context
+
+private void add(int a, int b){
+    System.out.println(a+b);
+}
+convert to:-
+(int a, int b)->{System.out.println(a+b);}
+convert to:-
+(a,b) -> System.out.println(a+b);
+
+
+>> NO return keyword
+private int getStringLength(String str){
+    return str.length();
+}
+convert to:-
+(String str)->{return str.length();}
+convert to:-
+(str)->str.length();
+
+>> of only one param remove small brackets
+(str)->str.length();
+convert to:
+str -> str.length();
+
