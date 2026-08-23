@@ -69,6 +69,5 @@ public class MainActivity_Lambda {
         System.out.println(lst2);
 
 
-
     }
 }
