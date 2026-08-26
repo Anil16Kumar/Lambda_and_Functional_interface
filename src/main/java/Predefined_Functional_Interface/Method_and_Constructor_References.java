@@ -1,13 +1,62 @@
 package Predefined_Functional_Interface;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class Method_and_Constructor_References {
+
+
+    public static class Student{
+        private String name;
+
+        @Override
+        public String toString() {
+            return "Student{" +
+                    "name='" + name + '\'' +
+                    '}';
+        }
+
+        public Student(String name) {
+            this.name = name;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+    }
+
+    public static void print(String str){
+        System.out.println(str);
+    }
+
     public static void main(String[] args) {
+
+        List<String> lst= Arrays.asList("abc","xyz","pqr");
+
+        lst.forEach(str-> System.out.println(str));
+        lst.forEach(Method_and_Constructor_References::print);// same as above line, pehale lambda likha tha
+
+        // function ko as parameter dena ho to hum lambda expression also method reference use karte h
+
+        //------------
+
+        List<String> list=Arrays.asList("abc","pqr","xyz");
+        List<Student> students=list.stream().map(x -> new Student(x)).collect(Collectors.toList());
+        System.out.println(students);
+
+        List<Student> studentsC=list.stream().map(Student::new).collect(Collectors.toList());//constructor reference
+        System.out.println(studentsC);
         //method Reference:
         //1. method ko refer karta hai
         //2. we can use this as place of lambda expression
 
         /*
-        Method Reference:
+Method Reference:
 A method reference is a shorthand for a lambda expression when the lambda only calls an existing method.
 
 Lambda
