@@ -1,4 +1,4 @@
-//package A_QuestionsPrac;
+package A_QuestionsPrac;
 
 import java.util.Scanner;
 import java.util.stream.IntStream;
