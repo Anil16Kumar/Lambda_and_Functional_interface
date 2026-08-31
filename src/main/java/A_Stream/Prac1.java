@@ -71,7 +71,7 @@ public class Prac1 {
                 .limit(101)
                 .skip(1)
                 .collect(Collectors.toList());
-        System.out.println(collect7);
+        System.out.println("-->"+collect7);
 
         List<Integer> collect8 = Stream.iterate(0, n -> n + 1)
                 .limit(101)
