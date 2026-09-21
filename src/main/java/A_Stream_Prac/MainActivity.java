@@ -1,4 +1,4 @@
-package A_Stream;
+package A_Stream_Prac;
 
 import java.util.Arrays;
 import java.util.List;

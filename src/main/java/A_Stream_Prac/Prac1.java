@@ -1,4 +1,4 @@
-package A_Stream;
+package A_Stream_Prac;
 
 import java.util.Arrays;
 import java.util.List;
@@ -64,7 +64,7 @@ public class Prac1 {
                 .collect(Collectors.toList());
         System.out.println(collect6);//[25, 17]
         // limit: start ke kitne elements chahiye
-        // skip: starting ke kitne elements nahi chahiye
+        // skip: starting ke kitne elements NAHI chahiye
 
 
         List<Integer> collect7 = Stream.iterate(0, n -> n + 1)

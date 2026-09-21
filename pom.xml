@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.compname</groupId>
-    <artifactId>Functional_interface_Lambda</artifactId>
+    <artifactId>Functional_interface_Lambda_Multithreading</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
