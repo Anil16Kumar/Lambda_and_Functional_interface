@@ -1,7 +1,7 @@
 
 
 Functional Interface:
-Interface having exaclty one abstract method but it can have any number of default and static methods, we can invoke lambda
+Interface having exact one abstract method but it can have any number of default and static methods, we can invoke lambda
 expression by using functional interface
 
 abstract method: jiski body nahi hoti
