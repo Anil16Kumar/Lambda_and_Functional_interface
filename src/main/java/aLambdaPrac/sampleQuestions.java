@@ -70,5 +70,54 @@ public class sampleQuestions {
 
         OptionalDouble average = nums.stream().mapToInt(num -> num).average();
         System.out.println(average);
+
+        long valuesGreaterThan10 = nums.stream().filter(num -> num > 10).count();
+        System.out.println(valuesGreaterThan10);
+
+        List<Integer> secondLargestValue = nums.stream()
+                .sorted((a, b) -> (b - a))
+                .skip(1).limit(1)
+                .collect(Collectors.toList());
+        System.out.println(secondLargestValue);
+
+        List<Integer> firstValueGreaterThan15 = nums.stream()
+                .filter(val -> val > 15)
+                .sorted()
+                .limit(1).collect(Collectors.toList());
+        System.out.println(firstValueGreaterThan15);
+
+        //---------
+
+        List<String> stringList = Arrays.asList("Anil", "Amit", "Rahul", "Ajay", "Rohit", "Arun");
+
+        List<String> nameStartsWithA = stringList.stream()
+                .filter(str -> str.charAt(0) == 'A')
+                .collect(Collectors.toList());
+        System.out.println(nameStartsWithA);
+
+        List<String>  nameLengthGreaterThan4 = stringList.stream()
+                .filter(str -> str.length() > 4)
+                .collect(Collectors.toList());
+        System.out.println(nameLengthGreaterThan4);
+
+        List<String> stringToUpperCase = stringList.stream()
+                .map(str -> str.toUpperCase()).collect(Collectors.toList());
+        System.out.println(stringToUpperCase);
+
+        List<String> sortAlphabetical = stringList.stream()
+                .sorted().collect(Collectors.toList());
+        System.out.println(sortAlphabetical);
+
+        String longestString = stringList.stream()
+                .sorted((a, b) -> (b.length() - a.length()))
+                .findFirst().orElse("");
+        System.out.println(longestString);
+
+        long countStringStartWithA = stringList.stream()
+                .filter(str -> str.charAt(0) == 'A').count();
+        System.out.println(countStringStartWithA);
+
+        String stringJoinCom = stringList.stream().collect(Collectors.joining(","));
+        System.out.println(stringJoinCom);
     }
 }
