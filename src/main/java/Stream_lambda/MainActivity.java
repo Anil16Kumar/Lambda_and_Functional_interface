@@ -1,4 +1,4 @@
-package A_Stream_Prac;
+package Stream_lambda;
 
 import java.util.Arrays;
 import java.util.List;

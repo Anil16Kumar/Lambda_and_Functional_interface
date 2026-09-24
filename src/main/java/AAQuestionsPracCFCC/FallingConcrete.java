@@ -1,4 +1,4 @@
-package A_QuestionsPrac;
+package AAQuestionsPracCFCC;
 
 import java.util.HashSet;
 import java.util.Scanner;

@@ -1,8 +1,7 @@
-package A_QuestionsPrac;
+package AAQuestionsPracCFCC;
 
 import java.math.BigInteger;
 import java.util.Scanner;
-import java.util.function.Consumer;
 import java.util.stream.IntStream;
 
 public class MinimumNumberOfPizzas {

@@ -1,4 +1,4 @@
-package aLambdaPrac;
+package A_Lambda_Stream_multithreading_ques_pr;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -112,5 +112,7 @@ public class StreamAndClass {
         List<Employee> empListNameA = employeesList.stream()
                 .filter(emp -> emp.getName().charAt(0) == 'A').collect(Collectors.toList());
         System.out.println(empListNameA);
+
+
     }
 }
