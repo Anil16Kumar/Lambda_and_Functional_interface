@@ -17,7 +17,7 @@ interface StringProcessor {
     String process(String s);
 }
 
-public class sampleQuestions {
+public class sampleQuestionsMain {
     public static void main(String[] args) {
 
         StringProcessor lowerCase=(str)->str.toLowerCase();

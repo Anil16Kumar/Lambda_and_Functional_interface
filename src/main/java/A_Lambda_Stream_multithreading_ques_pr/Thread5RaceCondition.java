@@ -34,7 +34,7 @@ public class Thread5RaceCondition {
         }
 
         System.out.println(c1.count); -> this will give us random values.
-        once we use "synchronization" keyword inside this method, we will get the required result:
+        once we use "synchronization" keyword with this method name, we will get the required result:
 
         public synchronized void increment(){
             count++;

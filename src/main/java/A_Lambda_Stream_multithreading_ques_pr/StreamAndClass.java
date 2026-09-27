@@ -42,7 +42,9 @@ public class StreamAndClass {
                 .sorted((emp1, emp2) -> (int) (emp1.getSalary() - emp2.getSalary()))
                 .collect(Collectors.toList());
         System.out.println(sortViaSalary);
-        
+
+
+
         /*  Optional<Employee> first = employeesList.stream()
                 .sorted().findFirst();                                       */
 
@@ -112,6 +114,112 @@ public class StreamAndClass {
         List<Employee> empListNameA = employeesList.stream()
                 .filter(emp -> emp.getName().charAt(0) == 'A').collect(Collectors.toList());
         System.out.println(empListNameA);
+
+
+        //get only names for this employee list:
+        List<String> allNamesFromEmployeeList = employeesList.stream()
+                        .map(Employee::getName)
+                        .collect(Collectors.toList());
+        System.out.println(allNamesFromEmployeeList);
+
+        //get all name form IT department only
+        List<String> getAllNamesFromIT = employeesList.stream()
+                .filter(emp -> emp.getDepartment() == "IT")
+                .map(Employee::getName)
+                .toList();
+        System.out.println(getAllNamesFromIT);
+
+        //Count employees with salary > 80000
+        long salaryCount = employeesList.stream()
+                .filter(employee -> employee.getSalary() > 80000)
+                .count();
+        System.out.println(salaryCount);
+
+        //Check if any employee belongs to Finance
+        boolean isFinance = employeesList.stream()
+                .anyMatch(employee -> employee.getDepartment() == "Finance");
+        System.out.println(isFinance);
+
+        //Check if all employees have salary > 50000
+        boolean allSalaryMatch = employeesList.stream()
+                .allMatch(employee -> employee.getSalary() > 50000);
+        System.out.println(allSalaryMatch);
+
+
+        //Find first employee from HR
+        Optional<Employee> firstEmployee = employeesList.stream().filter(employee -> employee.getDepartment() == "HR").findFirst();
+        System.out.println(firstEmployee);
+
+        //Find total salary of all employees
+        double totalSumSalary = employeesList.stream()
+                .mapToDouble(emp -> emp.getSalary())
+                .sum();
+        System.out.println(totalSumSalary);
+
+
+
+        /*
+        Find employee with highest salary
+        Don't sort.
+        Use:
+        max()
+
+        Much better than:
+        sorted().findFirst()
+        * */
+        Employee maximumSalaryEmployee = employeesList.stream()
+                .max(Comparator.comparingDouble(Employee::getSalary)).orElse(null);// orElse() use karo nahi to
+                                                                                            // Optional<> use karna padega in datatype
+        System.out.println(maximumSalaryEmployee.getSalary());
+
+        //Find employee with lowest salary
+        Optional<Employee> minimumSalaryEmployee = employeesList.stream()
+                .min(Comparator.comparingDouble(Employee::getSalary));
+        System.out.println(minimumSalaryEmployee);
+
+
+        //Find second highest salary employee
+        /*
+        You already did this.
+        :
+        Find 3rd highest.
+        * */
+        Employee secondMaximum = employeesList.stream()
+                .sorted((emp1, emp2) -> (int) (emp2.getSalary() - emp1.getSalary()))
+                .skip(1)
+                .max(Comparator.comparingDouble(Employee::getSalary)).orElse(null);
+        System.out.println(secondMaximum);
+
+        Employee thirdMaximum = employeesList.stream()
+                .sorted((emp1, emp2) -> (int) (emp2.getSalary() - emp1.getSalary()))
+                .skip(2)
+                .max(Comparator.comparingDouble(Employee::getSalary)).orElse(null);
+        System.out.println(thirdMaximum);
+
+
+        //Find department having maximum employees
+        Map<String, List<Employee>> groupOfDepartment = employeesList.stream()
+                .collect(Collectors.groupingBy(Employee::getDepartment));
+        //this above will give us a map
+        String MaxDepartment = groupOfDepartment.entrySet().stream()
+                .max(Map.Entry.comparingByValue(Comparator.comparingInt(List::size)))
+                .get().getKey();
+        System.out.println(MaxDepartment);
+
+        // in one go:-
+        String maxDepartment = employeesList.stream()
+                .collect(Collectors.groupingBy(
+                        Employee::getDepartment,
+                        Collectors.counting()
+                ))
+                .entrySet()
+                .stream()
+                .max(Map.Entry.comparingByValue())
+                .get()
+                .getKey();
+        System.out.println(maxDepartment);
+
+
 
 
     }
