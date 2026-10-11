@@ -1,4 +1,4 @@
-//package AAQuestionsPracCFCC;
+package AAQuestionsPracCFCC;
 
 import java.util.Scanner;
 

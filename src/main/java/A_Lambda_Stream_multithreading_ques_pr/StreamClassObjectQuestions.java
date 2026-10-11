@@ -18,10 +18,21 @@ class Staff {
         this.salary = salary;
     }
 
-    public int getId() { return id; }
-    public String getName() { return name; }
-    public String getDepartment() { return department; }
-    public double getSalary() { return salary; }
+    public int getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getDepartment() {
+        return department;
+    }
+
+    public double getSalary() {
+        return salary;
+    }
 
     @Override
     public String toString() {
@@ -31,11 +42,12 @@ class Staff {
 
 public class StreamClassObjectQuestions {
     public static void main(String[] args) {
-        List<Staff> StaffList= Arrays.asList(
+        List<Staff> StaffList = Arrays.asList(
                 new Staff(1, "Anil", "IT", 85000),
                 new Staff(2, "Amit", "HR", 60000),
                 new Staff(3, "Rahul", "IT", 95000),
-                new Staff(5, "Rohit", "HR", 55000),
+                new Staff(5, "Rohit", "HR", 95000),
+                new Staff(5, "Anuradha", "HR", 53000),
                 new Staff(6, "Arun", "Finance", 90000),
                 new Staff(4, "Ajay", "Finance", 75000),
                 new Staff(7, "Deepa", "IT", 110000)
@@ -74,7 +86,7 @@ Finance=165000
 //        {Finance=[90000.0, 75000.0], HR=[60000.0, 55000.0], IT=[85000.0, 95000.0, 110000.0]}
         // but we want sum off all these:
         Map<String, Double> salarySumByDepartment = StaffList.stream().collect(Collectors.groupingBy(Staff::getDepartment,
-                                Collectors.summingDouble(Staff::getSalary)));
+                Collectors.summingDouble(Staff::getSalary)));
         System.out.println(salarySumByDepartment);
 
 
@@ -124,6 +136,90 @@ Finance=Arun
         Map<String, Optional<Staff>> highestPaid = StaffList.stream().collect(Collectors.groupingBy(Staff::getDepartment,
                 Collectors.maxBy(Comparator.comparingDouble(Staff::getSalary))));
         System.out.println(highestPaid);
+
+        /*
+        Department → Employee Count
+        {
+ IT=3,
+ HR=2,
+ Finance=2
+}
+        * */
+        Map<String, Long> collectEmpDepartmentCount = StaffList.stream().collect(Collectors.groupingBy(Staff::getDepartment,
+                Collectors.counting()));
+        System.out.println(collectEmpDepartmentCount);
+
+
+        /*
+        Department → Employee Names Sorted Alphabetically
+        {
+ IT=[Anil, Deepa, Rahul],
+ HR=[Amit, Rohit],
+ Finance=[Ajay, Arun]
+}
+        * */
+
+        Map<String, List<String>> nameSortedDeptWise = StaffList.stream()
+                .collect(Collectors.groupingBy(Staff::getDepartment,
+                        Collectors.mapping(Staff::getName, Collectors.collectingAndThen(
+                                        Collectors.toList(),
+                                        list -> list.stream().sorted().toList()
+                                )
+                        )));
+        System.out.println(nameSortedDeptWise);
+
+
+        /*
+        Department → Employee IDs
+        {
+ IT=[1,3,7],
+ HR=[2,5],
+ Finance=[4,6]
+}
+        * */
+        Map<String, List<Integer>> idsInDept = StaffList.stream().collect(Collectors.groupingBy(Staff::getDepartment,
+                Collectors.mapping(Staff::getId, Collectors.toList())));
+        System.out.println(idsInDept);
+
+        /*
+        *Department → Highest Salary
+        {
+ IT=110000,
+ HR=60000,
+ Finance=90000
+}
+        * */
+        Map<String, Optional<Double>> maxSalaryDept = StaffList.stream().collect(Collectors.groupingBy(Staff::getDepartment,
+                Collectors.mapping(Staff::getSalary, Collectors.maxBy(Comparator.naturalOrder()))));
+        System.out.println(maxSalaryDept);
+
+
+        /*
+        Department → Lowest Salary
+        {
+ IT=85000,
+ HR=55000,
+ Finance=75000
+}
+        * */
+        Map<String, Optional<Double>> minSalaryDept = StaffList.stream().collect(Collectors.groupingBy(Staff::getDepartment,
+                Collectors.mapping(Staff::getSalary, Collectors.minBy(Comparator.naturalOrder()))));
+        System.out.println(minSalaryDept);
+
+        /*
+        Department → Employees having salary > 80000
+        {
+ IT=[Anil, Rahul, Deepa],
+ Finance=[Arun]
+}
+        * */
+
+        Map<String, List<String>> greaterThanSalaryNameInDepartment = StaffList.stream()
+                .collect(Collectors.groupingBy(Staff::getDepartment,
+                Collectors.filtering(stf -> stf.getSalary() > 80000,
+                        Collectors.mapping(Staff::getName, Collectors.toList()))));
+        System.out.println(greaterThanSalaryNameInDepartment);
+
 
     }
 }
